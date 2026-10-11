@@ -1,0 +1,65 @@
+{
+  "manifest_version": 3,
+  "name": "Frontier Token Tracker",
+  "version": "2.0.9",
+  "minimum_chrome_version": "116",
+  "description": "Local input and output token analytics across AI chat providers.",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "sidePanel",
+    "alarms"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Frontier token usage",
+    "default_popup": "popup.html"
+  },
+  "side_panel": {
+    "default_path": "popup.html"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://aistudio.google.com/*",
+        "https://grok.com/*",
+        "https://www.perplexity.ai/*",
+        "https://chat.deepseek.com/*",
+        "https://chat.mistral.ai/*",
+        "https://openrouter.ai/*"
+      ],
+      "js": [
+        "adapters.js",
+        "capture.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://aistudio.google.com/*",
+        "https://grok.com/*",
+        "https://www.perplexity.ai/*",
+        "https://chat.deepseek.com/*",
+        "https://chat.mistral.ai/*",
+        "https://openrouter.ai/*"
+      ],
+      "js": [
+        "schema.js",
+        "gemini-dom.js",
+        "grok-dom.js",
+        "bridge.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}
