@@ -4,7 +4,7 @@ The extension tracks requests observed in supported browser tabs. It provides lo
 
 ## Install and read the counts
 
-At `chrome://extensions`, enable Developer mode and load the project folder as an unpacked extension. To upgrade, reload the existing extension and refresh AI chat tabs. Keeping the same installation preserves its local history.
+Run `python build.py`. At `chrome://extensions`, enable Developer mode and load `dist/frontier-token-tracker/` as an unpacked extension. To upgrade, rebuild, reload the existing extension, and refresh AI chat tabs. Keeping the same installation preserves its local history.
 
 The popup and side panel sum all providers over the rolling last 24 hours. Model rows show input and output separately. The floating page badge shows the latest observed request on that page, so it can differ from popup totals. The dashboard supports longer rolling ranges and model/source filters.
 

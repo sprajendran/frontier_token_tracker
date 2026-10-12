@@ -52,7 +52,7 @@ python build.py
 
 The build checks referenced assets and ZIP integrity. The resulting `frontier-token-tracker.zip` contains the runtime files, README, and guides. Profiles, test reports, and test runner code are excluded by the explicit allowlist.
 
-Load this project folder using Developer mode and Load unpacked at `chrome://extensions`. After editing runtime files, reload the extension and refresh provider tabs. Update `manifest.json` when preparing a new version and rebuild the ZIP.
+The build also creates `dist/frontier-token-tracker/` for Developer mode and Load unpacked at `chrome://extensions`. Select that folder, which contains `manifest.json` directly and excludes Python caches and test artifacts. After editing runtime files, run `python build.py` again, reload the extension, and refresh provider tabs. Update `manifest.json` when preparing a new version.
 
 ## Add a provider fix
 

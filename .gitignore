@@ -1,5 +1,6 @@
 test-profile*/
 test-results.html
-*.zip
 test-artifacts/
 __pycache__/
+dist/
+*.zip

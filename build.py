@@ -1,6 +1,7 @@
 """Package the Chrome extension: python build.py."""
 import json
 import re
+import shutil
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
@@ -10,7 +11,7 @@ FILES = [
     'bridge.js', 'capture.js', 'client.js', 'compact.css', 'dashboard.css',
     'dashboard.html', 'dashboard.js', 'database.js', 'gemini-dom.js',
     'options.html', 'options.js', 'popup.html', 'popup.js', 'pricing.js',
-    'schema.js', 'grok-dom.js', 'README.md',
+    'schema.js', 'grok-dom.js', 'README.md', 'PRIVACY.md',
     'docs/development.md', 'docs/usage.md',
 ]
 
@@ -31,6 +32,12 @@ def main():
                                        path.read_text(encoding='utf-8')))
     if required - set(FILES):
         raise RuntimeError(f'Unpackaged dependencies: {sorted(required - set(FILES))}')
+    unpacked = ROOT / 'dist' / 'frontier-token-tracker'
+    unpacked.mkdir(parents=True, exist_ok=True)
+    for name in FILES:
+        target = unpacked / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / name, target)
     output = ROOT / 'frontier-token-tracker.zip'
     with ZipFile(output, 'w', ZIP_DEFLATED) as archive:
         for name in FILES:
@@ -39,6 +46,7 @@ def main():
         if archive.testzip() is not None:
             raise RuntimeError('ZIP integrity check failed')
     print(f'Built {output.name} (v{manifest["version"]}, {len(FILES)} files, {output.stat().st_size:,} bytes)')
+    print(f'Load unpacked from: {unpacked}')
 
 
 if __name__ == '__main__':

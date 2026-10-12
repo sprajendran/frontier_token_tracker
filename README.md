@@ -4,12 +4,13 @@ Local Chrome extension for observed AI input/output tokens, model totals, rollin
 
 ## Project documentation
 
+- [Privacy policy](PRIVACY.md): data processing, local storage, permissions, and deletion controls.
 - [Development guide](docs/development.md): source layout, record flow, validation, build, and test artifacts.
 - [Usage and troubleshooting](docs/usage.md): preview totals, token accuracy, DeepSeek capture, and diagnosing missing counts.
 
 ## Install or upgrade
 
-1. Open `chrome://extensions`, enable **Developer mode**, and choose **Load unpacked** for this folder. Chrome 116+ is required.
+1. Run `python build.py`. Open `chrome://extensions`, enable **Developer mode**, and choose **Load unpacked** for `dist/frontier-token-tracker/`. Chrome 116+ is required. This folder excludes Python caches and test artifacts.
 2. For an existing installation, click **Reload** on the same extension. Do not remove/reinstall it if you want to retain history.
 3. Refresh AI chat tabs. Click the extension icon for the popup, then open the dashboard, side panel, or settings.
 
